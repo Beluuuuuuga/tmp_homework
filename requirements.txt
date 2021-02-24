@@ -1,0 +1,5 @@
+notebook
+pandas
+mlflow
+hydra-core
+tensorflow-gpu==2.3
