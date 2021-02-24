@@ -1,4 +1,3 @@
-notebook
 pandas
 mlflow
 hydra-core
