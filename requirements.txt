@@ -4,3 +4,4 @@ hydra-core
 tensorflow-gpu==2.3
 matplotlib
 scikit-learn
+jupyterlab
