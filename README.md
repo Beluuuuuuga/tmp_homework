@@ -60,7 +60,7 @@ OSSのOptunaを用いて、10エポックで10回validation lossが最も小さ�
 macro minority F1は不均衡データ対象の鳥、鹿、トラックのF1スコアの平均を表している。  
 バッチサイズ最適化は今回の場合、効果が薄かったようである。
 
-| experiment                                            | accuracy | macro F1 | macro minority F1 | 
+| experiment                                            | accuracy | macro f1 | macro minority f1 | 
 | ----------------------------------------------------- | -------- | -------- | ----------------- | 
 | AE + CNN 2 + Batchsize32                              | 78       | 78       | 74                | 
 | AE + CNN 2 + Aug 2 + Batchsize64(params optimization) | 77       | 77       | 73                | 
@@ -130,9 +130,15 @@ macro minority F1は不均衡データ対象の鳥、鹿、トラックのF1ス�
 | 40    | AE + CNN 2 + Aug 2                          | 80       | 80       | 75                | 66      | 72      | 88       | AE_2_CNN_012      | 
 | 41    | AE + CNN 2 + Aug 2 + CV                     | 83       | 87       | -                 | -       | -       | -        | AE_2_CNN_014      | 
 | 42    | AE + CNN 2 + Aug 2 + Batchsize64            | 77       | 77       | 73                | 66      | 68      | 86       | AE_2_CNN_013      | 
-| 43    | AE + CNN 2 + Aug 2 + OOF                    | 82       | 82       | 78                | 69      | 79      | 87       | AE_2_CNN_014      | 
+| 43    | AE + CNN 2 + OOF                    | 82       | 82       | 78                | 69      | 79      | 87       | AE_2_CNN_014      | 
 | 44    | AE + CNN 2 + Aug 2 + OOF           | 87       | 87       | 86                | 80      | 85      | 93       | AE_2_CNN_014      | 
-
+| 45  | AE + CNN 2 + Aug 3 + CV              | 84  | 83  | -   | -   | -   | -   | AE_2_CNN_015 | 
+| 46  | AE + CNN 2 + Aug 3 + OOF             | 87  | 87  | 86  | 80  | 85  | 92  | AE_2_CNN_015 | 
+| 47  | AE + CNN 2 + Aug 4 + CV              | 83  | 82  | -   | -   | -   | -   | AE_2_CNN_015 | 
+| 48  | AE + CNN 2 + Aug 4 + OOF             | 86  | 85  | 83  | 75  | 84  | 91  | AE_2_CNN_015 | 
+| 49  | AE + CNN 2 + OverSamp + Aug 2  + CV  | 90  | 90  | -   | -   | -   | -   | AE_2_CNN_016 | 
+| 50  | AE + CNN 2 + OverSamp + Aug 2  + OOF | 88  | 88  | 86  | 81  | 86  | 92  | AE_2_CNN_016 | 
+|     | 
 ##### 実験レポートの内容
 - AEs_Train_001: 
   - 単一AE, 2層Stack AE, 3層Stacked AEモデル作成
@@ -199,6 +205,16 @@ macro minority F1は不均衡データ対象の鳥、鹿、トラックのF1ス�
 - AE_2_CNN_013: 
   - 単一AEを用いて特徴量抽出し、分類モデル(CNN2)作成
   - バッチサイズ、最低化関数のハイパーパラメータ探索
+- AE_2_CNN_015: 
+  - 単一AEを用いて特徴量抽出し、分類モデル(CNN2)作成
+  - データ拡張手法実験
+  - K-fold(層状K分割)で3つに分け、交差検証評価
+  - K-fold(層状K分割)で3つに分けたモデルを用いてOut of fold(OOF)でテストデータを予測し評価
+- AE_2_CNN_016: 
+  - 単一AEを用いて特徴量抽出し、分類モデル(CNN2)作成
+  - オーバーサンプリング適用
+  - K-fold(層状K分割)で3つに分け、交差検証評価
+  - K-fold(層状K分割)で3つに分けたモデルを用いてOut of fold(OOF)でテストデータを予測し評価
 
 
 ## ビルド
